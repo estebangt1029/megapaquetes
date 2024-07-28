@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Usuario</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .conteiner {
+        width: 100vw;
+        background-image: url("../../imagenes/fondo\ de\ contacto.svg"); /* Imagen de fondo */
+        background-repeat: no-repeat; /* No repetir el fondo */
+        background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+        background-position: center; /* Centra la imagen dentro del contenedor */
+        font-family: "MiFuente"; /* Fuente personalizada */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      form {
+        width: 50%;
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        border: 2px solid green;
+      }
+      @media (min-width: 300px) and (max-width: 767px) {
+        .conteiner {
+          background-size: 130vh;
+        }
+        form {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="conteiner">
+      <form id="create-user-form" class="my-5">
+        <h2 class="mb-4 text-center">Crear Usuario</h2>
+
+        <div class="form-group">
+          <label for="full-name">Nombres</label>
+          <input
+            type="text"
+            class="form-control"
+            id="full-name"
+            placeholder="Ingresa tus nombres"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="last-name">Apellidos</label>
+          <input
+            type="text"
+            class="form-control"
+            id="last-name"
+            placeholder="Ingresa tus apellidos"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Correo</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Teléfono</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            placeholder="Ingresa tu teléfono"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="address">Dirección</label>
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="Ingresa tu dirección"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="new-password">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="new-password"
+            placeholder="Ingresa tu contraseña"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirmar Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            placeholder="Confirma tu contraseña"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="4"
+            placeholder="Escribe brevemente..."
+            required
+          ></textarea>
+        </div>
+        <div
+          class="text-center d-flex flex-column align-items-center gap-2 pt-4"
+        >
+          <button tydive="submit" class="btn btn-success">Crear Usuario</button>
+          <a href="listar.html" class="btn btn-primary">Volver</a>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("create-user-form");
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          // Capturar los datos del formulario
+          const fullName = document.getElementById("full-name").value;
+          const lastName = document.getElementById("last-name").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const address = document.getElementById("address").value;
+          const newPassword = document.getElementById("new-password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          const description = document.getElementById("description").value;
+
+          // Validar que las contraseñas coincidan
+          if (newPassword !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return;
+          }
+
+          // Crear un objeto de usuario
+          const user = {
+            fullName,
+            lastName,
+            email,
+            phone,
+            address,
+            password: newPassword,
+            description,
+          };
+
+          // Guardar el usuario en el local storage
+          let users = JSON.parse(localStorage.getItem("users")) || [];
+          users.push(user);
+          localStorage.setItem("users", JSON.stringify(users));
+
+          // Limpiar el formulario
+          form.reset();
+
+          alert("Usuario creado exitosamente");
+        });
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap Bundle JS desde CDN -->
+  </body>
+</html>

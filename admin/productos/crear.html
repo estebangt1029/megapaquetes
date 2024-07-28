@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Producto</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      * {
+        margin: 0; /* Eliminar margen en todos los elementos */
+        padding: 0; /* Eliminar padding en todos los elementos */
+        box-sizing: border-box; /* Incluir bordes y padding en el cálculo del tamaño */
+      }
+
+      /* Variables CSS para colores y medidas */
+      :root {
+        --color-fondo-principal: #000000; /* Color de fondo principal */
+        --color-texto-principal: #ffffff; /* Color de texto principal */
+        --color-primario: #99e89d; /* Color primario */
+        --color-secundario: #006633; /* Color secundario */
+        --color-terciario: #4da768; /* Color terciario */
+        --color-acento-1: #26874e; /* Color de acento 1 */
+        --color-acento-2: #257236; /* Color de acento 2 */
+        --color-resaltado: #3bc975; /* Color de resaltado */
+        --padding: 30px; /* Padding común */
+        --paddin-button: 10px; /* Padding para botones */
+        --margin-top: 30px; /* Margen superior */
+      }
+
+      body {
+        background-image: url("../../imagenes/fondo\ de\ actualizar1.svg"); /* Imagen de fondo */
+        background-repeat: no-repeat; /* No repetir el fondo */
+        background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+        background-position: center; /* Centra la imagen dentro del contenedor */
+        font-family: "MiFuente"; /* Fuente personalizada */
+      }
+      .conteiner {
+        width: 100vw;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      form {
+        width: 70%;
+        background-color: rgb(255, 255, 255);
+        padding: 30px;
+        border: 5px solid green;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      @media (min-width: 300px) and (max-width: 767px) {
+        .conteiner {
+          background-size: 130vh;
+        }
+        form {
+          width: 90%;
+        }
+      }
+
+      .borde {
+        border: 4px solid var(--color-terciario); /* Borde sólido con color terciario */
+      }
+
+      /* Estilo para el título principal */
+      .titulo__principal {
+        color: var(--color-acento-2); /* Color de acento 2 */
+        font-weight: bold; /* Texto en negrita */
+        text-align: center; /* Alineación centrada */
+        font-size: 60px; /* Tamaño de fuente */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+        margin-top: 60px; /* Margen superior */
+      }
+
+      /* Línea separadora */
+      .contenedor__linea {
+        width: 1320px; /* Ancho de la línea */
+        height: 3px; /* Grosor de la línea */
+        background-color: var(--color-terciario); /* Color de la línea */
+        margin: 20px auto; /* Espaciado superior e inferior, centrar horizontalmente */
+        margin-top: 10px; /* Separación superior adicional */
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .titulo {
+        color: var(--color-acento-2); /* Color de acento 2 */
+        font-weight: bold; /* Texto en negrita */
+        font-size: 40px; /* Tamaño de fuente */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+      }
+      .form__label {
+        display: flex; /* Utiliza Flexbox para el diseño */
+        justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
+        align-items: center; /* Alinea los elementos en el centro verticalmente */
+        margin-bottom: 5px; /* Margen inferior */
+        color: var(--color-terciario); /* Color terciario */
+        font-weight: bold; /* Texto en negrita */
+      }
+
+      .boton__crear,
+      .boton__regresar {
+        display: flex; /* Usar flexbox para el diseño */
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        margin-top: 100px; /* Margen superior */
+      }
+
+      /* Estilo para los enlaces de los botones */
+      .boton__crear--link,
+      .boton__regresar--link {
+        width: 100%; /* Ancho del 100% del contenedor padre */
+        max-width: 200px; /* Ancho máximo */
+        min-height: 50px; /* Altura mínima */
+        background-color: var(--color-terciario); /* Color de fondo terciario */
+        color: var(--color-fondo-principal); /* Color del texto */
+        font-weight: bold; /* Texto en negrita */
+        cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+        border-radius: 15px; /* Bordes redondeados */
+        display: flex; /* Usar flexbox para centrar el texto */
+        align-items: center; /* Centrar verticalmente */
+        justify-content: center; /* Centrar horizontalmente */
+        padding: 10px 20px; /* Relleno interno */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        text-align: center; /* Alinear el texto en el centro */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contenedor__principal pb-5">
+      <p class="titulo__principal">Gestión de Productos</p>
+      <div class="contenedor__linea"></div>
+    </div>
+
+    <div class="conteiner text-success">
+      <form id="create-product-form">
+        <h2 class="mb-5 pb-5 text-center titulo">Crear Producto</h2>
+
+        <div class="form-group">
+          <label for="product-name">Nombre del Producto</label>
+          <input
+            type="text"
+            class="form-control"
+            id="product-name"
+            placeholder="Ingrese el nombre del producto"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-description">Descripción</label>
+          <textarea
+            class="form-control"
+            id="product-description"
+            rows="3"
+            placeholder="Ingrese la descripción del producto"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="product-price">Precio</label>
+          <input
+            type="number"
+            class="form-control"
+            id="product-price"
+            placeholder="Ingrese el precio del producto"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-quantity">Cantidad</label>
+          <input
+            type="number"
+            class="form-control"
+            id="product-quantity"
+            placeholder="Ingrese la cantidad del producto"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="product-imagen">Imagen</label>
+          <input
+            type="text"
+            id="productImage"
+            class="form-control"
+            placeholder="URL de la imagen del producto"
+            required
+          />
+        </div>
+        <div class="form-group product-category">
+          <select id="product-category" class="form-control" required>
+            <option value="" disabled selected>Seleccione una categoría</option>
+            <option value="Fruta">Fruta</option>
+            <option value="Verdura">Verdura</option>
+            <option value="Tubérculo">Tubérculo</option>
+          </select>
+        </div>
+        <div
+          class="boton__crear d-flex flex-column align-items-center gap-2 pt-4"
+        >
+          <button type="submit" class="btn btn-success boton__crear--link">
+            Crear Producto
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="boton__regresar pb-5">
+      <a
+        href="../productos/listar.html"
+        class="boton__regresar--link"
+        style="text-decoration: none"
+        >Regresar</a
+      >
+    </div>
+
+    <script>
+      document
+        .getElementById("create-product-form")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          const name = document.getElementById("product-name").value;
+          const description = document.getElementById(
+            "product-description"
+          ).value;
+          const price = document.getElementById("product-price").value;
+          const quantity = document.getElementById("product-quantity").value;
+          const productImage = document.getElementById("productImage").value;
+          const productCategory =
+            document.getElementById("product-category").value;
+
+          const products = JSON.parse(localStorage.getItem("products")) || [];
+          products.push({
+            name,
+            description,
+            price,
+            quantity,
+            productImage,
+            productCategory,
+          });
+          localStorage.setItem("products", JSON.stringify(products));
+
+          window.location.href = "listar.html"; // Redirigir a la lista de productos después de crear
+        });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap Bundle JS desde CDN -->
+  </body>
+</html>
